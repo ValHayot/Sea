@@ -1,7 +1,15 @@
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 
+\usepackage{soul}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\newcommand{\suggestion}[2]{\textbf{\color{OliveGreen}#1 \st{#2}\color{black}}}
+\newcommand{\tristan}[1]{\color{blue}From Tristan: #1\color{black}}
+
+
 \begin{document}
-\title{Sea: A hierarchical filesystem for Big-Data Scientific Computing}
+\title{Sea: \suggestion{in-memory, locality-aware computing for}{A hierarchical filesystem for} Big-Data Scientific Computing}
 % remove neuroimaging and replace with scientific computing  add user-space, switch HPC to computing clusters
 
 \author{Val\'erie Hayot-Sasson and Tristan Glatard}
@@ -25,7 +33,7 @@
 
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
-\IEEEPARstart{E}{ffecient} data-management strategies have become imperative in 
+\IEEEPARstart{E}{fficient} data-management strategies have become imperative in 
 mitigating the costs of processing large datasets. These strategies come in the form
 of data locality, which ensures that computation is performed where the data resides
 rather than relocating the data, and in-memory computing, which ensures that the data is
@@ -33,23 +41,34 @@ maintained in RAM, whenever possible. Big Data frameworks, such as the Hadoop Ma
 have evolved to support either or both of these strategies.
 However, while many domains have adopted the use of Big Data framework and filesystems to ensure effective data
 management within their applications, many scientific applications are developed without such strategies in mind.
+
+\tristan{You should cite existing initiatives: Big Data projects in science (neuroimaging) and the corresponding systems. Maybe make a dedicated paragraph on neuroimaging, explaining that 
+this is our primary use case and showing how it is a Big Data science.}
 % add speedup results
 
 Scientific applications may omit leveraging Big Data frameworks, despite having Big Data workloads,
-for many reasons. One such reason may be the data format. BigData frameworks were originally developed
-for text-processing. Scientific applications, in contrast, may rely on image processing for their
+for many reasons. One such reason may be the data format\suggestion{, as}{} BigData frameworks were originally developed
+for text-processing. Scientific applications, in contrast, \suggestion{often rely on binary formats such as images or signals}{may rely on image processing} for their
 analyses. The fundamental differences between these two data formats made leveraging BigData frameworks for
 scientific image processing non-trivial. While recent efforts have been made to support data-intensive
-image processing workloads, there remains some work to be done.
+image processing workloads, there remains some work to be done \tristan{last two sentences could be more accurate}.
 
-Scientific applications are usually composed of numerous well-established command-line tools. These tools
+\suggestion{In addition, s}{S}cientific applications are usually composed of numerous well-established command-line tools. These tools
 may have been developed at a time when the processing would have been compute intensive, thus not requiring any
 data management strategies, yet remain scientifically relevant. While newer applications
 that leverage such tools may be written using Big Data frameworks, such frameworks are not designed to transfer
 data in-memory to command-line applications, and thus would require some instrumentation.
 
+\tristan{you could explain the system requirements and where they are coming from:
+\begin{itemize}
+\item do not instrument applications
+\item deploy in user space
+\item reduced overhead
+\end{itemize}
+}
+
 While various infrastructures are available to researchers, including local workstations, cloud and 
-High Performance Computing (HPC) clusters, researchers commonly rely on HPC clusters due to their low cost and available
+High Performance Computing (HPC) clusters, researchers commonly rely on HPC clusters due to their \suggestion{cost model}{low cost} and available
 resources. Such clusters typically rely on a network-based parallel file system, such as Lustre, Ceph and GlusterFS.
 Since data storage and compute are maintained as separate entities on HPC clusters, processing BigData workflows on them
 may be particularly costly, particularly when no BigData framework is applied. Furthermore, while it is possible to execute
