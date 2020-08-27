@@ -1,0 +1,10 @@
+experiment,repetition,runtime,max_mem,flush_time,disk_files,total_flush
+mem_final_multinode,0,169.352258425,59s 0m8.723s 0m3.529s,0,0
+mem_all_multinode,0,165.607822962,14s 0m8.257s 0m12.834s,0,0
+lustre_multinode,0,109.139876317,0,0,0
+lustre_multinode,1,139.937697266,0,0,0
+mem_final_multinode,1,178.919077699,87s 0m8.349s 0m3.594s,0,0
+mem_all_multinode,1,167.112511746,40s 0m8.187s 0m13.016s,0,0
+mem_all_multinode,2,174.943497156,64s 0m8.305s 0m12.989s,0,0
+lustre_multinode,2,106.523772654,0,0,0
+mem_final_multinode,2,184.762329610,26s 0m4.280s 0m5.517s,0,0
