@@ -27,6 +27,7 @@ RUN apt install -y python2 \
     libopenblas-base \
     tar \
     unzip \
+    bzip2 \
     bc \
     libglu1-mesa-dev \
     freeglut3-dev \
@@ -38,7 +39,7 @@ RUN apt install -y python2 \
 
 RUN ln -s /usr/bin/python2.7 /usr/bin/python
 
-RUN wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslinstaller.py &&\
+RUN wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/releases/fslinstaller.py &&\
     python fslinstaller.py -d /usr/local/fsl &&\
     rm -rf /usr/local/fsl/src
 
